@@ -28,14 +28,18 @@
     <div style="margin: auto; background-color: grey; width: 50%; border-radius: 15px; box-shadow: 5px 5px 5px; text-align: center; padding: 20px;">
 
 
-    <form style="text-align: center;", method="POST">
-        <input type="file" name="file" id="file">
+    <form style="text-align: center;", method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" accept="image/*">
         <button type="submit">Upload</button>
     </form>
 
     <h2 style="font-family: Road Rage;">Result:</h2>
     {% if prediction %}
-        <h2>Prediction: {{ prediction }}</h2>
+        <h2>Prediction Result:</h2>
+        {% if uploaded_file %}
+            <img src="{{ uploaded_file }}" alt="Uploaded Image" style="max-width:300px; margin:10px 0;">
+        {% endif %}
+        <p>Prediction: {{ prediction }}</p>
         <p>Confidence: {{ confidence|round(2) }}</p>
     {% endif %}
 

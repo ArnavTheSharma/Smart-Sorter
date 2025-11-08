@@ -1,0 +1,4 @@
+recycle
+compost
+other
+trash
