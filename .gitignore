@@ -1,0 +1,40 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.sqlite3
+instance/
+.env
+.venv/
+venv/
+env/
+*.DS_Store
+
+# --- Flask / Uploads ---
+static/uploads/
+test_images/
+*.tmp
+
+# --- Teachable Machine model (optional, if large) ---
+model/*.h5
+model/*.tflite
+model/keras_model.h5
+model/converted_model/
+
+# --- Node / Frontend ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# --- IDE / Editor files ---
+.vscode/
+.idea/
+*.swp
+
+# --- OS Files ---
+.DS_Store
+Thumbs.db

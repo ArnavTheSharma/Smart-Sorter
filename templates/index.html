@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JKTrashBuddies</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Road+Rage&family=Rubik+Distressed&display=swap');
+    </style>
+</head>
+<body style="background-color: darkslategrey;">
+    
+    <ul style="
+  display: block; 
+  justify-content: space-around; 
+  align-items: center; 
+  background-color: grey; 
+  width: 95%;
+  border-radius: 15px; 
+  padding: 20px; 
+  margin-bottom: 10px;
+">
+  <h1 style="font-size: 25px; font-family: 'Rubik Distressed', cursive; margin: 0 auto;">Trash Buddy</h1>
+  <button><a href="info" style="margin-left: auto; text-decoration: none; color: black; font-weight: bold;">Info</a></button>
+  <button><a href="past" style="margin-left: auto; text-decoration: none; color: black; font-weight: bold;">Past Uploads</a></button>
+</ul>
+
+    <div style="margin: auto; background-color: grey; width: 50%; border-radius: 15px; box-shadow: 5px 5px 5px; text-align: center; padding: 20px;">
+
+
+    <form style="text-align: center;", method="POST">
+        <input type="file" name="file" id="file">
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2 style="font-family: Road Rage;">Result:</h2>
+    {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
+        <p>Confidence: {{ confidence|round(2) }}</p>
+    {% endif %}
+
+    
+    </div>
+</body>
+</html>
