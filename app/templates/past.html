@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Past Uploads - TrashBuddy{% endblock %}
 {% block content %}
-  <h2>Your Past Uploads</h2>
-  {% if uploads %}
-    <ul style="list-style:none; padding:0;">
-      {% for upload in uploads %}
-        <li style="margin-bottom:15px;">
-          <img src="{{ upload.image_path }}" style="max-width:200px; border-radius:10px;"><br>
-          <b>{{ upload.prediction }}</b> — {{ (upload.confidence * 100)|round(2) }}%<br>
-          <small>Uploaded on {{ upload.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</small>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>You haven’t uploaded anything yet!</p>
-  {% endif %}
+<h2>Your Past Uploads</h2>
+{% if uploads %}
+  <ul style="list-style:none; padding:0;">
+    {% for upload in uploads %}
+      <li style="margin-bottom:15px;">
+        <img src="{{ url_for('static', filename=upload.image_path) }}" style="max-width:200px; border-radius:10px;"><br>
+        <b>{{ upload.prediction }}</b> — {{ (upload.confidence * 100)|round(2) }}%<br>
+        <small>Uploaded on {{ upload.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>You haven’t uploaded anything yet!</p>
+{% endif %}
 {% endblock %}

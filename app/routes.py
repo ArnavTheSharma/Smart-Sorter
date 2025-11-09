@@ -45,9 +45,10 @@ def index():
                 prediction, confidence = predict_image(filepath)
 
                 # Flask static URLs are relative to /static/
-                uploaded_file = url_for('app/static', filename=f'uploads/{file.filename}')
+                uploaded_file = url_for('static', filename=f'uploads/{file.filename}')
 
-                upload = Upload(user_id=current_user.id, image_path=filepath,
+                relative_path = f'uploads/{file.filename}'  
+                upload = Upload(user_id=current_user.id, image_path=relative_path,
                                 prediction=prediction, confidence=confidence)
                 db.session.add(upload)
                 db.session.commit()

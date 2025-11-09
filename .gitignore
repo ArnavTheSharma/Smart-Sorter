@@ -13,7 +13,7 @@ env/
 *.DS_Store
 
 # --- Flask / Uploads ---
-app/static/uploads/
+static/uploads/
 test_images/
 *.tmp
 

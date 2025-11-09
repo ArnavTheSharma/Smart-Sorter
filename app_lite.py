@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import tensorflow as tf
 import numpy as np
 from PIL import Image
@@ -42,22 +42,23 @@ def predict_image(img_path):
 def index():
     prediction = None
     confidence = None
-    uploaded_file = None
+    uploaded_file_url = None
 
     if request.method == "POST":
-        file = request.files.get("file")
-        if file and file.filename != "":
-            os.makedirs("app/static/uploads", exist_ok=True)
-            filepath = os.path.join("app/static/uploads", file.filename)
+        file = request.files["file"]
+        if file:
+            os.makedirs("static/uploads", exist_ok=True)
+            filepath = os.path.join("static/uploads", file.filename)
             file.save(filepath)
             prediction, confidence = predict_image(filepath)
-            uploaded_file = filepath  # pass to template
+            # Flask URL for static file
+            uploaded_file_url = url_for('static', filename='uploads/' + file.filename)
 
     return render_template(
-        "index.html",
-        prediction=prediction,
+        "index.html", 
+        prediction=prediction, 
         confidence=confidence,
-        uploaded_file=uploaded_file
+        uploaded_file_url=uploaded_file_url
     )
 
 
