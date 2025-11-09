@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Uploads - Trash Buddy</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Road+Rage&family=Rubik+Distressed&display=swap');
+        .scan-card {
+            background-color: #1C2121;
+            border: 1px solid #23CE6B;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px 0;
+        }
+        .scan-image {
+            max-width: 200px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body style="background-color: #2d2e29;">
+    <div style="margin: auto; width: 80%; padding: 20px;">
+        <h1 style="font-family: 'Rubik Distressed', cursive; color: #23CE6B; text-align: center;">Your Past Scans</h1>
+        
+        <div style="margin-top: 20px;">
+            {% for scan in scans %}
+            <div class="scan-card">
+                <img src="{{ url_for('static', filename='uploads/' + scan.filename) }}" alt="Scanned item" class="scan-image">
+                <p style="font-family: 'Road Rage', cursive; color: #23CE6B; font-size: 24px;">
+                    Prediction: {{ scan.prediction }}
+                </p>
+                <p style="color: #23CE6B;">
+                    Confidence: {{ "%.2f"|format(scan.confidence) }}
+                </p>
+                <p style="color: #23CE6B;">
+                    Date: {{ scan.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{{ url_for('index') }}" style="
+                background: linear-gradient(135deg, #4facfe, #00f2fe);
+                color: white;
+                text-decoration: none;
+                padding: 12px 24px;
+                border-radius: 12px;
+                font-size: 16px;
+                font-weight: 600;
+            ">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

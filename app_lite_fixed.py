@@ -140,7 +140,7 @@ def index():
             filepath = os.path.join("static/uploads", file.filename)
             file.save(filepath)
             prediction, confidence = predict_image(filepath)
-            uploaded_file = filepath  # pass to template
+            uploaded_file = filepath  
 
     return render_template(
         "index.html",

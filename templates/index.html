@@ -3,253 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta http-equiv="Permissions-Policy" content="camera=*, microphone=()">
     <title>JKTrashBuddies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Road+Rage&family=Rubik+Distressed&display=swap" rel="stylesheet">
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Road+Rage&family=Rubik+Distressed&display=swap');
+        
+        body {
+            background-color: #2d2e29;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .header {
+            display: flex; 
+            justify-content: space-around;
+            align-items: center;
+            width: 95%;
+            margin: 0 auto 20px auto; 
+            border-radius: 15px;
+            padding: 20px;
+            border: #23CE6B solid 1px;
+            background-color: #1C2121;
+            flex-wrap: wrap; 
+            gap: 10px; 
+        }
+
+        .header h1 {
+            font-size: 55px;
+            font-family: 'Rubik Distressed', cursive;
+            margin: 0;
+            color: #23CE6B;
+            flex-grow: 1; 
+        }
+        
+        
+        .button-style {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            text-decoration: none; 
+            display: inline-block; 
+        }
+
+        
+        .button-style:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+        }
+
+        .main-container {
+            margin: auto;
+            background-color: #1C2121;
+            width: 90%;
+            max-width: 800px; 
+            border-radius: 15px;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #23CE6B;
+        }
+
+        .upload-form {
+            text-align: center;
+            background-color: #23CE6B;
+            color: #272D2D;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .results-container {
+            padding: 10px;
+            border-radius: 15px;
+            border: #23CE6B solid 1px;
+        }
+
+        .results-container h1 {
+            font-family: 'Road Rage', cursive;
+            color: #23CE6B;
+            font-size: 50px;
+            text-shadow: 0.5px 0.5px #2d2e29;
+        }
+
+        .results-container p {
+            font-family: 'Road Rage', cursive;
+            color: #23CE6B;
+            font-size: 35px;
+            text-shadow: 0.5px 0.5px #2d2e29;
+        }
+
+        .uploaded-image {
+            max-width: 300px;
+            margin: 10px 0;
+            border-radius: 15px;
+            border: #23CE6B solid 1px;
+        }
+
     </style>
 </head>
-<body style="background-color: #2d2e29;">
+<body>
     
-    <ul style="
-  display: block; 
-  justify-content: space-around; 
-  align-items: center; 
-  width: 95%;
-  border-radius: 15px; 
-  padding: 20px; 
-  margin-bottom: 10px;
-  border: #23CE6B solid 1px;
-  background-color: #1C2121;
-">
-  <h1 style="font-size: 55px; font-family: 'Rubik Distressed', cursive; margin: 0 auto; color: #23CE6B;">Trash Buddy</h1>
-  <button id="startCamera" 
-  style="
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-right: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-  ">
-    Open Camera
-  </button>
-  <button id="capturePhoto" style="display: none;
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-right: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-  ">
-    Take Photo
-  </button>
-  <button 
-  style="
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-  "
-  onmouseover="this.style.transform='translateY(-3px)'; 
-                this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';
-                this.style.background='linear-gradient(135deg, #00f2fe, #4facfe)';"
-  onmouseout="this.style.transform='translateY(0)'; 
-               this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';
-               this.style.background='linear-gradient(135deg, #4facfe, #00f2fe)';"
-  onmousedown="this.style.transform='translateY(0)'; 
-                this.style.boxShadow='0 2px 6px rgba(0,0,0,0.2)';"
-  onmouseup="this.style.transform='translateY(-3px)'; 
-              this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';"
-><a href="info" style="margin-left: auto; text-decoration: none; color: #272D2D; font-weight: bold;">Info</a></button>
-  <button 
-  style="
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-  "
-  onmouseover="this.style.transform='translateY(-3px)'; 
-                this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';
-                this.style.background='linear-gradient(135deg, #00f2fe, #4facfe)';"
-  onmouseout="this.style.transform='translateY(0)'; 
-               this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';
-               this.style.background='linear-gradient(135deg, #4facfe, #00f2fe)';"
-  onmousedown="this.style.transform='translateY(0)'; 
-                this.style.boxShadow='0 2px 6px rgba(0,0,0,0.2)';"
-  onmouseup="this.style.transform='translateY(-3px)'; 
-              this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';"
-><a href="past" style="margin-left: auto; text-decoration: none; color: #272D2D; font-weight: bold;">Past Uploads</a></button>
-</ul>
-
-    <div style="margin: auto; background-color: #1C2121; width: 50%; border-radius: 15px; text-align: center; padding: 20px; border: 1px solid #23CE6B;">
-
-    <form style="text-align: center; background-color: #23CE6B; color: #272D2D; border-radius: 15px; padding: 15px;", method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" id="file" accept="image/*">
-        <button type="submit", name="action", value="upload" style="
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-  "
-  onmouseover="this.style.transform='translateY(-3px)'; 
-                this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';
-                this.style.background='linear-gradient(135deg, #00f2fe, #4facfe)';"
-  onmouseout="this.style.transform='translateY(0)'; 
-               this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';
-               this.style.background='linear-gradient(135deg, #4facfe, #00f2fe)';"
-  onmousedown="this.style.transform='translateY(0)'; 
-                this.style.boxShadow='0 2px 6px rgba(0,0,0,0.2)';"
-  onmouseup="this.style.transform='translateY(-3px)'; 
-              this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';">Upload</button>
-    </form>
-
-    <div style="padding: 10px; border-radius: 15px; border: #23CE6B solid 1px; margin: 15px;">
-    {% if prediction %}
-        <h1 style="font-family: Road Rage; color: #23CE6B; font-size: 50px; text-shadow: 0.5px 0.5px #2d2e29;"> How to dispose?</h1>
-        {% if uploaded_file %}
-            <img src="{{ uploaded_file }}" alt="Uploaded Image" style="max-width:300px; margin:10px 0; border-radius: 15px; border: #23CE6B solid 1px;">
-        {% endif %}
+    <header class="header">
+        <h1>Trash Buddy</h1>
         
-        <p style="font-family: Road Rage; color: #23CE6B; font-size: 35px; text-shadow: 0.5px 0.5px #2d2e29;">Prediction: {{ prediction }}</p>
-        <p style="font-family: Road Rage; color: #23CE6B; text-shadow: 0.5px 0.5px #2d2e29;">Confidence: {{ confidence|round(2) }}</p>
-        </div>
-        <button type="submit", name="action", value="clear" style="
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-  "
-  onmouseover="this.style.transform='translateY(-3px)'; 
-                this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';
-                this.style.background='linear-gradient(135deg, #00f2fe, #4facfe)';"
-  onmouseout="this.style.transform='translateY(0)'; 
-               this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';
-               this.style.background='linear-gradient(135deg, #4facfe, #00f2fe)';"
-  onmousedown="this.style.transform='translateY(0)'; 
-                this.style.boxShadow='0 2px 6px rgba(0,0,0,0.2)';"
-  onmouseup="this.style.transform='translateY(-3px)'; 
-              this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';">clear</button>
-    {% endif %}
+        <button id="startCamera" class="button-style">Open Camera</button>
+        <button id="capturePhoto" class="button-style" style="display: none;">Take Photo</button>
+        
+        <a href="info" class="button-style">Info</a>
+        <a href="past" class="button-style">Past Uploads</a>
+    </header>
 
+    <div class="main-container">
+        
+        <video id="video" style="display:none; max-width:100%; border-radius:15px; margin: 10px auto;" autoplay playsinline></video>
+        <canvas id="canvas" style="display:none;"></canvas>
+
+        <form class="upload-form" method="POST" action="" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" accept="image/*">
+            <button type="submit" name="action" value="upload" class="button-style">Upload</button>
+            
+           
+            {% if prediction %}
+            <button type="submit" name="action" value="clear" class="button-style">Clear</button>
+            {% endif %}
+        </form>
+
+        
+        {% if prediction %}
+        <div class="results-container">
+            <h1>How to dispose?</h1>
+            {% if uploaded_file %}
+                <img src="{{ uploaded_file }}" alt="Uploaded Image" class="uploaded-image">
+            {% endif %}
+            
+            <p>Prediction: {{ prediction }}</p>
+            <p>Confidence: {{ confidence|round(2) }}</p>
+        </div>
+        {% endif %}
     </div>
 
-    <!-- 添加视频元素用于显示相机画面 -->
-    <video id="video" style="display:none; max-width:100%; border-radius:15px; margin:10px 0;" 
-           autoplay playsinline allow="camera" webkit-playsinline></video>
-    <canvas id="canvas" style="display:none;"></canvas>
-
     <script>
-        let video = document.getElementById('video');
-        let canvas = document.getElementById('canvas');
-        let startButton = document.getElementById('startCamera');
-        let captureButton = document.getElementById('capturePhoto');
-        let stream = null;
-        
-        // 检查浏览器是否支持自动允许相机权限
-        if (navigator.permissions && navigator.permissions.query) {
-            navigator.permissions.query({ name: 'camera' })
-                .then(permissionStatus => {
-                    if (permissionStatus.state === 'granted') {
-                        // 已经获得权限，可以自动启动相机
-                        startButton.click();
-                    }
-                    
-                    permissionStatus.onchange = () => {
-                        if (permissionStatus.state === 'granted') {
-                            startButton.click();
-                        }
-                    };
-                })
-                .catch(error => console.log('权限查询失败:', error));
+    
+    document.addEventListener('DOMContentLoaded', () => {
 
-        // 开启相机
-        startButton.addEventListener('click', async () => {
+        
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const startButton = document.getElementById('startCamera');
+        const captureButton = document.getElementById('capturePhoto');
+        const form = document.querySelector('.upload-form');
+
+        
+        let stream = null;
+
+        
+        const startCamera = async () => {
             try {
+                
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+                
                 stream = await navigator.mediaDevices.getUserMedia({ video: true });
                 video.srcObject = stream;
+
+                // 
                 video.style.display = 'block';
                 startButton.style.display = 'none';
                 captureButton.style.display = 'inline-block';
             } catch (err) {
                 console.error('Error accessing camera:', err);
-                alert('Unable to access camera. Please make sure you have granted camera permissions.');
+                alert('Could not access the camera. Please ensure you have granted permission and are using a secure (HTTPS) connection.');
             }
-        });
+        };
 
-        // 拍照
-        captureButton.addEventListener('click', () => {
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            canvas.getContext('2d').drawImage(video, 0, 0);
-            
-            // 将图片转换为 blob
-            canvas.toBlob(blob => {
-                const formData = new FormData();
-                formData.append('file', blob, 'camera-photo.jpg');
-                
-                // 发送到服务器
-                fetch('/', {
-                    method: 'POST',
-                    body: formData
-                }).then(response => {
-                    if(response.ok) {
-                        window.location.reload();
-                    }
-                }).catch(error => {
-                    console.error('Error uploading photo:', error);
-                });
-            }, 'image/jpeg');
-
-            // 关闭相机
-            if(stream) {
+        /**
+         *
+         */
+        const stopCamera = () => {
+            if (stream) {
                 stream.getTracks().forEach(track => track.stop());
+                stream = null;
             }
             video.style.display = 'none';
+            video.srcObject = null;
+            
             startButton.style.display = 'inline-block';
             captureButton.style.display = 'none';
-        });
+        };
 
-        // 页面加载时尝试自动启动相机
-        document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('cameraAutoStart') === 'true') {
-                startButton.click();
-            }
-        });
+        
+        const takePhoto = () => {
+            
+            if (!stream) return;
+
+            
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            
+            canvas.getContext('2d').drawImage(video, 0, 0);
+
+            
+            canvas.toBlob(blob => {
+                
+                const formData = new FormData();
+                
+                
+                formData.append('file', blob, 'camera-photo.jpg');
+                
+                formData.append('action', 'upload');
+
+                
+                fetch(form.action || window.location.pathname, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    
+                    if (response.ok) {
+                        
+                        window.location.reload();
+                    } else {
+                        alert('Upload failed. The server responded with an error.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error uploading photo:', error);
+                    alert('An error occurred while uploading the photo.');
+                });
+
+            }, 'image/jpeg'); 
+
+            
+            stopCamera();
+        };
+
+        
+        startButton.addEventListener('click', startCamera);
+        captureButton.addEventListener('click', takePhoto);
+    });
     </script>
 </body>
 </html>
