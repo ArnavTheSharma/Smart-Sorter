@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, url_for
 from flask_login import login_required, current_user
 from app.models import Upload
 from app import db
@@ -36,11 +36,16 @@ def index():
         if action == "upload":
             file = request.files.get("file")
             if file and file.filename:
-                os.makedirs("static/uploads", exist_ok=True)
-                filepath = os.path.join("static/uploads", file.filename)
+                os.makedirs("app/static/uploads", exist_ok=True)
+                upload_dir = os.path.join(os.getcwd(), "app/static/uploads")
+                os.makedirs(upload_dir, exist_ok=True)
+
+                filepath = os.path.join(upload_dir, file.filename)
                 file.save(filepath)
                 prediction, confidence = predict_image(filepath)
-                uploaded_file = filepath
+
+                # Flask static URLs are relative to /static/
+                uploaded_file = url_for('app/static', filename=f'uploads/{file.filename}')
 
                 upload = Upload(user_id=current_user.id, image_path=filepath,
                                 prediction=prediction, confidence=confidence)

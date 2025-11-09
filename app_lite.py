@@ -47,8 +47,8 @@ def index():
     if request.method == "POST":
         file = request.files.get("file")
         if file and file.filename != "":
-            os.makedirs("static/uploads", exist_ok=True)
-            filepath = os.path.join("static/uploads", file.filename)
+            os.makedirs("app/static/uploads", exist_ok=True)
+            filepath = os.path.join("app/static/uploads", file.filename)
             file.save(filepath)
             prediction, confidence = predict_image(filepath)
             uploaded_file = filepath  # pass to template
