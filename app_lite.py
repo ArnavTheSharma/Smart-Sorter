@@ -61,7 +61,7 @@ def index():
 
 @app.route("/info")
 def showInfo():
-    print("Info about what materials are recyclable, compostable, etc")
+    return render_template("info.html")
 
 
 if __name__ == "__main__":
