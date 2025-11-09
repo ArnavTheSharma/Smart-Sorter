@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}TrashBuddy{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Distressed&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #F6F8FF;
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+    }
+    header {
+      background-color: grey;
+      color: black;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header h1 {
+      font-family: 'Rubik Distressed', cursive;
+      font-size: 28px;
+    }
+    header a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+    .container {
+      background-color: white;
+      width: 60%;
+      margin: 40px auto;
+      border-radius: 15px;
+      box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+      padding: 30px;
+      text-align: left;
+    }
+    button {
+      padding: 8px 15px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background-color: #6c757d;
+      color: white;
+    }
+    button:hover { background-color: #5a6268; }
+    input[type="file"], input[type="text"], input[type="password"] {
+      margin: 10px;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="{{ url_for('main.index') }}" style="color: #23CE6B; text-decoration: none;">Trash Buddy</a></h1>
+    <div>
+      <a href="{{ url_for('main.index') }}">Home</  a>
+      <a href="{{ url_for('main.showInfo') }}">Info</a>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('main.past_uploads') }}">Past Uploads</a>
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('auth.login') }}">Login</a>
+        <a href="{{ url_for('auth.register') }}">Register</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
