@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Permissions-Policy" content="camera=*, microphone=()">
     <title>JKTrashBuddies</title>
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Road+Rage&family=Rubik+Distressed&display=swap');
@@ -22,6 +23,37 @@
   background-color: #1C2121;
 ">
   <h1 style="font-size: 55px; font-family: 'Rubik Distressed', cursive; margin: 0 auto; color: #23CE6B;">Trash Buddy</h1>
+  <button id="startCamera" 
+  style="
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  ">
+    Open Camera
+  </button>
+  <button id="capturePhoto" style="display: none;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  ">
+    Take Photo
+  </button>
   <button 
   style="
     background: linear-gradient(135deg, #4facfe, #00f2fe);
@@ -134,7 +166,90 @@
               this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';">clear</button>
     {% endif %}
 
-
     </div>
+
+    <!-- 添加视频元素用于显示相机画面 -->
+    <video id="video" style="display:none; max-width:100%; border-radius:15px; margin:10px 0;" 
+           autoplay playsinline allow="camera" webkit-playsinline></video>
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <script>
+        let video = document.getElementById('video');
+        let canvas = document.getElementById('canvas');
+        let startButton = document.getElementById('startCamera');
+        let captureButton = document.getElementById('capturePhoto');
+        let stream = null;
+        
+        // 检查浏览器是否支持自动允许相机权限
+        if (navigator.permissions && navigator.permissions.query) {
+            navigator.permissions.query({ name: 'camera' })
+                .then(permissionStatus => {
+                    if (permissionStatus.state === 'granted') {
+                        // 已经获得权限，可以自动启动相机
+                        startButton.click();
+                    }
+                    
+                    permissionStatus.onchange = () => {
+                        if (permissionStatus.state === 'granted') {
+                            startButton.click();
+                        }
+                    };
+                })
+                .catch(error => console.log('权限查询失败:', error));
+
+        // 开启相机
+        startButton.addEventListener('click', async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                video.style.display = 'block';
+                startButton.style.display = 'none';
+                captureButton.style.display = 'inline-block';
+            } catch (err) {
+                console.error('Error accessing camera:', err);
+                alert('Unable to access camera. Please make sure you have granted camera permissions.');
+            }
+        });
+
+        // 拍照
+        captureButton.addEventListener('click', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            
+            // 将图片转换为 blob
+            canvas.toBlob(blob => {
+                const formData = new FormData();
+                formData.append('file', blob, 'camera-photo.jpg');
+                
+                // 发送到服务器
+                fetch('/', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => {
+                    if(response.ok) {
+                        window.location.reload();
+                    }
+                }).catch(error => {
+                    console.error('Error uploading photo:', error);
+                });
+            }, 'image/jpeg');
+
+            // 关闭相机
+            if(stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            video.style.display = 'none';
+            startButton.style.display = 'inline-block';
+            captureButton.style.display = 'none';
+        });
+
+        // 页面加载时尝试自动启动相机
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('cameraAutoStart') === 'true') {
+                startButton.click();
+            }
+        });
+    </script>
 </body>
 </html>
