@@ -75,7 +75,7 @@ def index():
             prediction, confidence = predict_image(filepath)
             uploaded_file = os.path.join("uploads", filename)  
 
-            
+
             scan = Scan(
                 filename=filename,
                 prediction=prediction,
