@@ -8,42 +8,133 @@
     @import url('https://fonts.googleapis.com/css2?family=Road+Rage&family=Rubik+Distressed&display=swap');
     </style>
 </head>
-<body style="background-color: darkslategrey;">
+<body style="background-color: #2d2e29;">
     
     <ul style="
   display: block; 
   justify-content: space-around; 
   align-items: center; 
-  background-color: grey; 
   width: 95%;
   border-radius: 15px; 
   padding: 20px; 
   margin-bottom: 10px;
+  border: #23CE6B solid 1px;
+  background-color: #1C2121;
 ">
-  <h1 style="font-size: 25px; font-family: 'Rubik Distressed', cursive; margin: 0 auto;">Trash Buddy</h1>
-  <button><a href="info" style="margin-left: auto; text-decoration: none; color: black; font-weight: bold;">Info</a></button>
-  <button><a href="past" style="margin-left: auto; text-decoration: none; color: black; font-weight: bold;">Past Uploads</a></button>
+  <h1 style="font-size: 55px; font-family: 'Rubik Distressed', cursive; margin: 0 auto; color: #23CE6B;">Trash Buddy</h1>
+  <button 
+  style="
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  "
+  onmouseover="this.style.transform='translateY(-3px)'; 
+                this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';
+                this.style.background='linear-gradient(135deg, #00f2fe, #4facfe)';"
+  onmouseout="this.style.transform='translateY(0)'; 
+               this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';
+               this.style.background='linear-gradient(135deg, #4facfe, #00f2fe)';"
+  onmousedown="this.style.transform='translateY(0)'; 
+                this.style.boxShadow='0 2px 6px rgba(0,0,0,0.2)';"
+  onmouseup="this.style.transform='translateY(-3px)'; 
+              this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';"
+><a href="info" style="margin-left: auto; text-decoration: none; color: #272D2D; font-weight: bold;">Info</a></button>
+  <button 
+  style="
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  "
+  onmouseover="this.style.transform='translateY(-3px)'; 
+                this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';
+                this.style.background='linear-gradient(135deg, #00f2fe, #4facfe)';"
+  onmouseout="this.style.transform='translateY(0)'; 
+               this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';
+               this.style.background='linear-gradient(135deg, #4facfe, #00f2fe)';"
+  onmousedown="this.style.transform='translateY(0)'; 
+                this.style.boxShadow='0 2px 6px rgba(0,0,0,0.2)';"
+  onmouseup="this.style.transform='translateY(-3px)'; 
+              this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';"
+><a href="past" style="margin-left: auto; text-decoration: none; color: #272D2D; font-weight: bold;">Past Uploads</a></button>
 </ul>
 
-    <div style="margin: auto; background-color: grey; width: 50%; border-radius: 15px; box-shadow: 5px 5px 5px; text-align: center; padding: 20px;">
+    <div style="margin: auto; background-color: #1C2121; width: 50%; border-radius: 15px; text-align: center; padding: 20px; border: 1px solid #23CE6B;">
 
-
-    <form style="text-align: center;", method="POST" enctype="multipart/form-data">
+    <form style="text-align: center; background-color: #23CE6B; color: #272D2D; border-radius: 15px; padding: 15px;", method="POST" enctype="multipart/form-data">
         <input type="file" name="file" id="file" accept="image/*">
-        <button type="submit">Upload</button>
+        <button type="submit", name="action", value="upload" style="
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  "
+  onmouseover="this.style.transform='translateY(-3px)'; 
+                this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';
+                this.style.background='linear-gradient(135deg, #00f2fe, #4facfe)';"
+  onmouseout="this.style.transform='translateY(0)'; 
+               this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';
+               this.style.background='linear-gradient(135deg, #4facfe, #00f2fe)';"
+  onmousedown="this.style.transform='translateY(0)'; 
+                this.style.boxShadow='0 2px 6px rgba(0,0,0,0.2)';"
+  onmouseup="this.style.transform='translateY(-3px)'; 
+              this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';">Upload</button>
     </form>
 
-    <h2 style="font-family: Road Rage;">Result:</h2>
+    <div style="padding: 10px; border-radius: 15px; border: #23CE6B solid 1px; margin: 15px;">
     {% if prediction %}
-        <h2>Prediction Result:</h2>
+        <h1 style="font-family: Road Rage; color: #23CE6B; font-size: 50px; text-shadow: 0.5px 0.5px #2d2e29;"> How to dispose?</h1>
         {% if uploaded_file %}
-            <img src="{{ uploaded_file }}" alt="Uploaded Image" style="max-width:300px; margin:10px 0;">
+            <img src="{{ uploaded_file }}" alt="Uploaded Image" style="max-width:300px; margin:10px 0; border-radius: 15px; border: #23CE6B solid 1px;">
         {% endif %}
-        <p>Prediction: {{ prediction }}</p>
-        <p>Confidence: {{ confidence|round(2) }}</p>
+        
+        <p style="font-family: Road Rage; color: #23CE6B; font-size: 35px; text-shadow: 0.5px 0.5px #2d2e29;">Prediction: {{ prediction }}</p>
+        <p style="font-family: Road Rage; color: #23CE6B; text-shadow: 0.5px 0.5px #2d2e29;">Confidence: {{ confidence|round(2) }}</p>
+        </div>
+        <button type="submit", name="action", value="clear" style="
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  "
+  onmouseover="this.style.transform='translateY(-3px)'; 
+                this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';
+                this.style.background='linear-gradient(135deg, #00f2fe, #4facfe)';"
+  onmouseout="this.style.transform='translateY(0)'; 
+               this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)';
+               this.style.background='linear-gradient(135deg, #4facfe, #00f2fe)';"
+  onmousedown="this.style.transform='translateY(0)'; 
+                this.style.boxShadow='0 2px 6px rgba(0,0,0,0.2)';"
+  onmouseup="this.style.transform='translateY(-3px)'; 
+              this.style.boxShadow='0 6px 15px rgba(0,0,0,0.25)';">clear</button>
     {% endif %}
 
-    
+
     </div>
 </body>
 </html>
